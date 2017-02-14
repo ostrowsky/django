@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+    {{organization.name}}
+{% endblock %}
+{% block content %}
+    <div class="block">
+        <div class="header">
+            <a href="{{organization.site}}">
+                {{organization.name}}
+            </a>
+        </div>
+        <div class="region">
+            Регион: {{organization.region}}
+        </div>
+        <div class="tax">
+            Регистрационный номер: {{organization.tax_id}}
+        </div>
+     </div>
+{% endblock %}

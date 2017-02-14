@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>обо мне</h2>
+                <div class="summary">
+                    {% if userdata %}
+                    <h3>{{userdata|title}}</h3>
+                    <h4>Дата рождения: {{userdata.birth_date}}</h4>
+                    {% endif %}
+                    {% if not about %}
+                        <p>Персональная информация отсутсвует</p>
+                    {% else %}
+                        <ul>
+                        {% for desc in about %}
+                            <li>{{desc.description}}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div><!--//summary-->
+            </section><!--//section-->
+{% endblock content %}

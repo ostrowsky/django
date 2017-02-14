@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+My jobs
+{% endblock %}
+{% block menu %}
+<ul class="nav nav-pills pull-right">
+    <li><a href="{% url 'main' %}">На главную</a></li>
+    <li><a href="{% url 'edu' %}">Учёба</a></li>
+    <li class="active"><a href="{% url 'job' %}">Работа</a></li>
+    <li><a href="{% url 'hobby' %}">Хобби</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="row marketing">
+    <h1>Места моей работы:</h1>
+    {% for job in jobs_list %}
+    <div class="col-lg-6">
+        <h4>{{ job.organization.region }}, <a href="{% url  'orgs' job.organization.id %}">{{ job.organization.name }}</a></h4>
+
+        <p><b>{{ job.period }}</b>, {{ job.position }}</p>
+        <p>{{ job.duties }}</p>
+    </div>
+     {% endfor %}
+</div>
+{% endblock %}
+

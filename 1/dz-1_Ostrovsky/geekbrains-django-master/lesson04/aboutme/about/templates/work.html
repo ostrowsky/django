@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Работа</h2>
+                <label for="isJobsChecked">Вывести только 3 последних места работы</label>
+                <input type="checkbox" id="isJobsChecked"/>
+                
+                {% if not jobs %}
+                <p>Информация о местах работы отсутствует</p>
+                {% else %}
+                    {% for job in jobs %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{job.position}}</h3>
+                                <div class="time">{{job.start_date|date:"N Y"|title}} - {{job.end_date|date:"N Y"|title}}</div>
+                            </div><!--//upper-row-->
+                            <div class="company">
+                                <a href="{% url 'about:company' pk=job.company.pk %}">{{job.company}}</a>
+                            </div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            <ul>
+                                {% for desc in job.description_set.all %}
+                                <li>{{desc}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--//details-->
+                    </div><!--//item-->                
+                    {% endfor %}
+                {% endif %}
+              
+            </section><!--//section-->
+{% endblock content %}

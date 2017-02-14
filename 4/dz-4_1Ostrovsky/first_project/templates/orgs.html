@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4><b>{{ organization.name }}</b></h4><br>
+{% if organization.site %}
+Официальный сайт: <a href="{{ organization.site }}">{{organization.site }}</a><br>
+{% endif %}
+Адрес: {{ organization.address }}<br>
+Телефон: {{ organization.phone }}<br>
+ИНН: {{ organization.tax_id }}
+</body>
+</html>

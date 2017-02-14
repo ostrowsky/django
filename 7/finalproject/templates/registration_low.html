@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+{% if reg_errors %}
+<ul>
+    {% for key, value in reg_errors.items %}
+    <li>{{key}} - {{value}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="post" role="form" action="/user/registration/">
+    {% csrf_token %}
+    <p>
+        <input type="text" name="name" placeholder="Введите имя" required>
+    </p>
+    <p>
+        <input type="email" name="email" placeholder="Введите e-mail" required>
+    </p>
+    <p>
+        <input type="email" name="confirm_email" placeholder="Подтвердите e-mail" required>
+    </p>
+    <p>
+        <input type="password" name="password" placeholder="Введите пароль" required>
+    </p>
+    <p>
+        <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required>
+    </p>
+    <button type="submit" name="submit">Зарегистрироваться</button>
+</form>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block userinfo %}
+{% comment %}
+ToDo Необходимо разобраться с рендерином поля avatar модели UserProfile
+{% endcomment %}
+<img class="profile" src="{% static 'about/img/photo3.png' %}" alt="Photo" width="150px" height="150px" />
+<h1 class="name">{{user|title}}</h1>
+<h3 class="tagline">{{user.prof_desc|title}}</h3>
+{% endblock %}
+{% block menu %}
+<ul class="list-unstyled">
+    <li><a href="{% url 'about:home' %}">Обо мне</a></li>
+    <li><a href="{% url 'about:work' %}">Работа</a></li>
+    <li class="active"><a href="#">Образование</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-book"></i>Образование</h2>
+                {% if educations %}
+                    {% for education in educations %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{education.level}}</h3>
+                                <div class="time">{{education.start_date|date:"Y"}} - {{educations.end_date|date:"Y"}}</div>
+                            </div><!--//upper-row-->
+                            <div class="company"><a href="{{education.website}}" target="_blank">{{education.website}}</a> {{education.institution}}</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            <p>{{education.description}}</p>
+                        </div><!--//details-->
+                    </div><!--//item-->
+                    {% endfor %}
+                {% else %}
+                <p>Информация об образовании отсутствует</p>
+                {% endif %}
+            </section><!--//section-->
+{% endblock content %}

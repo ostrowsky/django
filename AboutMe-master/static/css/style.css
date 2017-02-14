@@ -1,0 +1,44 @@
+h1 {
+    color: #268cbe;
+}
+
+img.logo {
+    width: 40px;
+}
+
+ul.info {
+    list-style-type: none;
+}
+
+.fio {
+    font-size: 16pt;
+}
+
+.content {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.photo{
+	float:left;
+	border: 2px solid #1C85AF;
+	border-radius: 3px;
+	padding: 4px;
+	margin-right: 25px;
+}
+
+.block {
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #9b9b9b;
+    border-radius: 4px;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.desc {
+    padding: 15px;
+}

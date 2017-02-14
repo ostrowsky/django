@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    Learn | {{block.super}}
+{% endblock %}
+{% block content %}
+    {% for learn in learns %}
+        <div class="block">
+            <div class="header">
+                {{learn.date_start.year}} - {{learn.date_end.year}}
+            </div>
+            <div class="desc">
+                {{learn.name}}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

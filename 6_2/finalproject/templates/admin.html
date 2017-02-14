@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static '/packages/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.eot' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.svg' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.ttf' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.woff' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.woff2' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/styles_boots.css' %}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="/static/js/create_user.js"></script>
+    {% endblock %}
+</head>
+<body>
+ {% include 'inc-registration_form.html' %}
+    <form id="user_form" method="POST" onclick="send_data({{ id }})">{% csrf_token %}
+
+    <table>
+       {% for field in form %}
+        <tr>
+            <td>
+                {{ field.label_tag }}
+            </td>
+            <td>
+                <div class="my_class">
+                    <ul>
+                        {% for error in field.errors %}
+                        <li class="error">{{ error }}</li>
+                        {% endfor %}
+                        {{ field }}
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        <input type="submit" value="Edit account" onclick="send_data()">
+    </form>
+</body>
+</html>

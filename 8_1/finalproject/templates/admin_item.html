@@ -1,0 +1,23 @@
+{% extends "base_admin.html" %}
+{% block js %}
+
+        <script type="text/javascript" src="/static/packages/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/static/js/item.js"></script>
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            Товары
+            <ul id="items_list">
+                {% include "inc-items_list.html" %}
+            </ul>
+        </div>
+    </div>
+  <form id="item_form" method="post" action="{% url 'admin_item_create' %}" enctype="multipart/form-data">
+        {% include 'inc-registration_form.html' %}
+      <input type="submit" value="Отправить">
+  </form>
+
+{% endblock %}

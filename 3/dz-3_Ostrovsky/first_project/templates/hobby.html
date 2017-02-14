@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+My hobbies
+{% endblock %}
+{% block menu %}
+<ul class="nav nav-pills pull-right">
+    <li><a href="{% url 'main' %}">На главную</a></li>
+    <li><a href="{% url 'edu' %}">Учёба</a></li>
+    <li><a href="{% url 'job' %}">Работа</a></li>
+    <li class="active"><a href="{% url 'hobby' %}">Хобби</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="row marketing">
+    <h1>Мои хобби:</h1>
+    {% for hobby in hobbies %}
+    <div class="col-lg-5">
+       <h4>{{hobby.name}}</h4>  <img src={{hobby.img}}>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
+

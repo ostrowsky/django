@@ -1,0 +1,11 @@
+{% extends "base_admin.html" %}
+{% block content %}
+    {% for gem in gems %}
+    <li>
+        <a href="{% url 'gems_detail' gem.id %}">{{gem.name}}</a>
+        <a href="{% url 'gems_delete' gem.id %}">Удалить</a>
+        <a href="{% url 'gems_update' gem.id %}">Редактировать</a>
+    </li>
+    {% endfor %}
+    <a href="{% url 'gems_create' %}">Добавить</a>
+{% endblock %}

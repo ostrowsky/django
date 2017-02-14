@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Работа</h2>
+                
+                {% if not jobs %}
+                <p>Информация о местах работы отсутствует</p>
+                {% else %}
+                    {% for job in jobs %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{job.position}}</h3>
+                                <div class="time">{{job.start_date|date:"N Y"|title}} - {{job.end_date|date:"N Y"|title}}</div>
+                            </div><!--//upper-row-->
+                            <div class="company"><a href="{{job.company.website}}" target="_blank">{{job.company.website}}</a> {{job.company.name}} {{job.company.location}}</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            <ul>
+                                {% for desc in job.description_set.all %}
+                                <li>{{desc}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--//details-->
+                    </div><!--//item-->                
+                    {% endfor %}
+                {% endif %}
+              
+            </section><!--//section-->
+{% endblock content %}

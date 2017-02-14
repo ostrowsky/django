@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+   <meta charset="UTF-8">
+   <title>About me</title>
+
+   <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static '/css/jumbotron-narrow.css' %}">
+
+</head>
+<body>
+<div class="container">
+      <div class="header">
+          <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="{% url 'main' %}">На главную</a></li>
+          <li><a href="{% url 'edu' %}">Учёба</a></li>
+          <li><a href="{% url 'job' %}">Работа</a></li>
+        </ul>
+        <h3 class="text-muted">Моя персональная страница</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Островский Василий</h1>
+          <img src="{% static '/img/photo.jpg' %}">
+          <hr>
+        <p class="lead">Здравствуйте! Эта персональная страница была разработана мной в рамках учебного курса Django. Меня зовут Островский Василий Александрович. Я родился в 1980 г. в Москве, заниматься программированим начал в школе и продолжаю до сих пор. В настоящее время изучаю основы веб-разработки с использованием Python 3.6 и Django 1.10. </p>
+
+      </div>
+
+
+      <div class="footer">
+        <p>&copy; Островский В.А. 2017 г.</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

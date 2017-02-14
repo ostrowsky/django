@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+   <meta charset="UTF-8">
+   <title>About me</title>
+   
+   <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static '/css/jumbotron-narrow.css' %}">
+
+</head>
+<body>
+<div class="container">
+      <div class="header">
+          <ul class="nav nav-pills pull-right">
+          <li><a href="{% url 'main' %}">На главную</a></li>
+          <li class="active"><a href="{% url 'edu' %}">Учёба</a></li>
+          <li><a href="{% url 'job' %}">Работа</a></li>
+        </ul>
+        <h3 class="text-muted">Моя персональная страница</h3>
+      </div>
+
+      <h1>Места моей учёбы:</h1>
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Школа № 14 г. Москвы</h4>
+          <p>1987 - 1995</p>
+
+          <h4>Школа № 843 г. Москвы</h4>
+          <p>1995 - 1997</p>
+        </div>
+
+        <div class="col-lg-6">
+            <h4>Институт криптографии, связи и информатики</h4>
+            <p>1997 - 2002, специальность - Радиоэлектронные системы защиты информации</p>
+
+            <h4>Московская международная школа бизнеса "МИРБИС"</h4>
+            <p>2006 - 2007, специальность - Системный анализ и управление проектами</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Островский В.А. 2017 г.</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

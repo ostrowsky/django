@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-book"></i>Образование</h2>
+                {% if not educations %}
+                <p>Информация об образовании отсутствует</p>
+                {% else %}
+                    {% for education in educations %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{education.level}}</h3>
+                                <div class="time">{{education.start_date|date:"Y"}} - {{education.end_date|date:"Y"}}</div>
+                            </div><!--//upper-row-->
+                            <div class="company"><a href="{{education.website}}" target="_blank">{{education.website}}</a> {{education.institution}}</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            <p>{{education.description}}</p>
+                        </div><!--//details-->
+                    </div><!--//item-->
+                    {% endfor %}
+                {% endif %}
+            </section><!--//section-->
+{% endblock content %}

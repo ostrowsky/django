@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+    Index | {{block.super}}
+{% endblock %}
+ {% block content %}
+    <div class="photo">
+        <img src="/static/img/photo.jpg" height="120">
+    </div>
+    <ul class="info">
+        <li>
+            <span class="fio">{{surname}} {{name}} {{middlename}}</span>
+        </li>
+        <li>
+            Год рождения: {{birthday|date:"Y"}}
+        </li>
+        <li>
+            Город: {{city}}
+        </li>
+        <li>
+            Образование: {{study}}
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="desc">
+        {% for p in info %}
+            <p>
+                {{p}}
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

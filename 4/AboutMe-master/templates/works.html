@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    Work | {{block.super}}
+{% endblock %}
+{% block content %}
+    {% for place in work_places %}
+        <div class="block">
+            <div class="header">
+                <a href="{{place.organization.site}}">
+                    {{place.organization.name}}
+                </a>
+            </div>
+            <div class="post">
+                Должность: {{place.position}}
+            </div>
+            <div class="desc">
+                {{place.duties}}
+            </div>
+         </div>
+    {% endfor %}
+{% endblock %}

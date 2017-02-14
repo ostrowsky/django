@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="jumbotron hero-spacer">
+    <h2 class="text-center">Registration</h2>
+    <form class="form-horizontal" action="/accounts/registration" method="POST">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.label.id_for_label }}" class="col-sm-3 control-label">{{ field.label }}</label>
+                <div class="col-sm-6">
+                    {{ field }}
+                </div>
+            </div>
+
+        {% endfor %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+</header>
+{% endblock %}

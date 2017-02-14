@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+About me
+{% endblock %}
+{% block menu %}
+<ul class="nav nav-pills pull-right">
+    <li class="active"><a href="{% url 'main' %}">На главную</a></li>
+    <li><a href="{% url 'edu' %}">Учёба</a></li>
+    <li><a href="{% url 'job' %}">Работа</a></li>
+    <li><a href="{% url 'hobby' %}">Хобби</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <h1>{{ name }}</h1>
+    <h3>дата рождения: {{ birthdate|date:"d.m.Y" }} г.</h3>
+    <img src="{% static '/img/photo.jpg' %}">
+    <hr>
+    <p class="lead">{{ text }}</p>
+</div>
+{% endblock %}

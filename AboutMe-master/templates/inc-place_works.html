@@ -1,0 +1,15 @@
+{% for place in work_places %}
+    <div class="block">
+        <div class="header">
+            <a href="{% url 'organization' place.organization.pk %}">
+                {{place.organization.name}}
+            </a>
+        </div>
+        <div class="post">
+            Должность: {{place.position}}
+        </div>
+        <div class="desc">
+            {{place.duties}}
+        </div>
+     </div>
+{% endfor %}

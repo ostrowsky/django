@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+    Work | {{block.super}}
+{% endblock %}
+{% block js %}
+    {{block.super}}
+    <script src="{% static 'js/last_work.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <span>
+        {% csrf_token %}
+        <input type="checkbox" name="last_works" value="" onclick="on_check(this)">
+    </span>
+    <div id="place_works">
+        {% include "inc-place_works.html" %}
+    </div>
+{% endblock %}

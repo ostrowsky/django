@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block userinfo %}
+{% comment %}
+ToDo Необходимо разобраться с рендерином поля avatar модели UserProfile
+{% endcomment %}
+<img class="profile" src="{% static 'about/img/photo3.png' %}" alt="Photo" width="150px" height="150px" />
+<h1 class="name">{{user|title}}</h1>
+<h3 class="tagline">{{user.prof_desc|title}}</h3>
+{% endblock %}
+{% block menu %}
+<ul class="list-unstyled">
+    <li><a href="{% url 'about:home' %}">Обо мне</a></li>
+    <li class="active"><a href="#">Работа</a></li>
+    <li><a href="{% url 'about:study' %}">Образование</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>Работа</h2>
+                
+                {% if jobs %}
+                    {% for job in jobs %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{job.position}}</h3>
+                                <div class="time">{{job.start_date|date:"N Y"|title}} - {{job.end_date|date:"N Y"|title}}</div>
+                            </div><!--//upper-row-->
+                            <div class="company"><a href="{{job.company.website}}" target="_blank">{{job.company.website}}</a> {{job.company.name}} {{job.company.location}}</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            <ul>
+                                {% for desc in job.description_set.all %}
+                                <li>{{desc}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--//details-->
+                    </div><!--//item-->                
+                    {% endfor %}
+                {% else %}
+                <p>Информация о местах работы отсутствует</p>
+                {% endif %}
+              
+            </section><!--//section-->
+{% endblock content %}

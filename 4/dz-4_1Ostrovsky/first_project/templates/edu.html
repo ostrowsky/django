@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+My education
+{% endblock %}
+{% block menu %}
+<ul class="nav nav-pills pull-right">
+    <li><a href="{% url 'main' %}">На главную</a></li>
+    <li class="active"><a href="{% url 'edu' %}">Учёба</a></li>
+    <li><a href="{% url 'job' %}">Работа</a></li>
+    <li><a href="{% url 'hobby' %}">Хобби</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="row marketing">
+    <h1>Места моей учебы:</h1>
+    {% for edu in edu_list %}
+    <div class="col-lg-6">
+        <h4>{{edu.name}}</h4>
+        {% if edu.link %} <a href="{{edu.link}}">{{edu.link}}</a> {% endif %}
+        <p><b>{{edu.period}}</b>, {% if edu.spec %} {{edu.spec}} {% endif %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

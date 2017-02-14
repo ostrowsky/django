@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<section class="section experiences-section">
+    <h2 class="section-title"><i class="fa fa-suitcase"></i>{{company|title}}</h2>
+    <div class="item">
+        <div class="meta">
+            <div class="upper-row">
+                <h3 class="job-title"><a href="{{company.website}}" target="_blank">{{company.website}}</a></h3>
+            </div>
+            <!--//upper-row-->
+        </div>
+        <!--//meta-->
+        <div class="details">
+        <ul>
+        <li>Полное наименование: <strong>{{company.full_name}}</strong></li>
+        <li>Адрес: <strong>{{company.address}}</strong></li>
+        <li>Телефон: <strong>{{company.phone}}</strong></li>
+        </ul>
+        </div>
+        <!--//details-->
+    </div>
+    <!--//item-->
+</section>
+<a href="#" onClick="javascript:history.go(-1);">Назад</a>
+<!--//section-->
+{% endblock content %}

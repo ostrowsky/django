@@ -1,0 +1,12 @@
+{% for category in categories %}
+    <li>{{ category.name }}
+
+        <button type="button" class="btn btn-default" aria-label="Edit"
+                onclick="get_cat_info({{ category.id }})">
+            <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+        </button>
+        <a href="delete/cat/{{ category.id }}" class="btn btn-default">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </a>
+    </li>
+{% endfor %}

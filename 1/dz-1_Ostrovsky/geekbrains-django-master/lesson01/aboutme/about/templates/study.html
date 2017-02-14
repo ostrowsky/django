@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block menu %}
+<ul class="list-unstyled">
+    <li><a href="{% url 'about:home' %}">Обо мне</a></li>
+    <li><a href="{% url 'about:work' %}">Работа</a></li>
+    <li class="active"><a href="#">Образование</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa fa-book"></i>Образование</h2>
+                <div class="item">
+                    <div class="meta">
+                        <div class="upper-row">
+                            <h3 class="job-title">Неоконченное высшее образование</h3>
+                            <div class="time">2004 - 2006</div>
+                        </div><!--//upper-row-->
+                        <div class="company"><a href="https://http://www.msu.ru/" target="_blank">http://www.msu.ru/</a> Московский государственный университет имени М.В.Ломоносова</div>
+                    </div><!--//meta-->
+                    <div class="details">
+                        <p>Социологический факультет. Специализация Менеджмент Организаций</p>
+                    </div><!--//details-->
+                </div><!--//item-->
+                
+                <div class="item">
+                    <div class="meta">
+                        <div class="upper-row">
+                            <h3 class="job-title">Среднее образование</h3>
+                            <div class="time">1993 - 2004</div>
+                        </div><!--//upper-row-->
+                        <div class="company"><a href="http://school57.tgl.ru/" target="_blank">http://school57.tgl.ru/</a> МБУ «Лицей № 57», г. Тольятти</div>
+                    </div><!--//meta-->
+                </div><!--//item-->
+            </section><!--//section-->
+{% endblock content %}

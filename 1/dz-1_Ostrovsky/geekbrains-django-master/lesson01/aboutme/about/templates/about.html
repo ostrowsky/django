@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block menu %}
+<ul class="list-unstyled">
+    <li class="active"><a href="#">Обо мне</a></li>
+    <li><a href="{% url 'about:work' %}">Работа</a></li>
+    <li><a href="{% url 'about:study' %}">Образование</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>обо мне</h2>
+                <div class="summary">
+                    <ul>
+                        <li>Имею опыт в IT сфере более 8 лет. Начинал как системный администратор в IT-Аутсорсинг компании(<a href="http://www.mibis.ru" target="_blank">www.mibis.ru</a>). За 1.5 года стал руководителем и ведущим специалистом. В подчинении было 5 инженеров. После этого работал в качестве руководителя IT в одном из риелтерских агентств г. Москвы(<a href="http://www.yusin.ru" target="_blank">www.yusin.ru</a>). Далее ушел в абсолютно новую для себя сферу IT банковских технологий(<a href="https://www.bifit.com" target="_blank">www.bifit.com</a>) в качестве инженера отдела внедрения и сопровождения. Достаточно быстро (через 1.5 года) стал его руководителем и успешно управлял отделом Технической Поддержки(8-12 человек) и отделом Внедрения(3-4 человека) на протяжении чуть менее 3-х лет. Быстро адаптируюсь и развиваюсь, нацелен на результат.</li>
+                        <li>На текущий момент обучаюсь по профессии Python разработчика на портале <a href="https://www.geekbrains.ru" target="_blank">GeekBrains</a>, самостоятельно решаю задачи по python на ресурсах <a href="https://checkio.org" target="_blank">checkio.org</a> и <a href="https://devman.org" target="_blank">devman.org</a>, читаю различную профессиональную литературу. Изучил основы Python, HTML, CSS, JavaScript</li>
+                        <li>Делал несколько задач по Web-Scraping`у(Python, requests, dryscrape, BeautifulSoup4) на фриланс-бирже <a href="https://upwork.com" target="_blank">Upwork</a></li>
+                        <li>Ссылка на профиль ВК: <a href="https://vk.com/silvercorvin" target="_blank">https://vk.com/silvercorvin</a></li>
+                        <li>Несколько моих хобби: футбол(играю сам, также люблю смотреть), рыбалка, шахматы, нумизматика</li>
+                    </ul>
+                </div><!--//summary-->
+            </section><!--//section-->
+{% endblock content %}
