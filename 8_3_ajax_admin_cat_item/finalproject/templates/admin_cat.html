@@ -1,0 +1,21 @@
+{% extends "base_admin.html" %}
+{% block js %}
+        <script type="text/javascript" src="/static/packages/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/static/js/create_category.js"></script>
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            Категории
+            <ul id="categories_list">
+                {% include "inc-categories_list.html" %}
+            </ul>
+        </div>
+    </div>
+  <form id="cat_form">
+        {% include 'inc-registration_form.html' %}
+    </form>
+    <input type="submit" value="Отправить" onclick="send_new_cat()">
+{% endblock %}

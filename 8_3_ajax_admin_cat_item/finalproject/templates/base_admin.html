@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Интерфейс администрирования
+        {% endblock %}
+    </title>
+        {% block  css %}
+        <link rel="stylesheet" href="/static/packages/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/styles/styles_boots.css">
+        {% endblock %}
+</head>
+<body>
+    {% block js %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    <br>
+  <a href="/admin/">Пользователи</a> / <a href="/admin/cat/">Категории</a> / <a href="/admin/item/">Товары</a>
+</body>
+</html>

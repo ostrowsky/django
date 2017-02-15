@@ -1,0 +1,12 @@
+{% csrf_token %}
+{% for item in items %}
+    <li>{{ item.name }}
+        <button type="button" class="btn btn-default" aria-label="Edit"
+                onclick="get_item_info({{ item.id }})">
+            <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+        </button>
+        <a href="/delete/item/{{ item.id }}" class="btn btn-default">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </a>
+    </li>
+{% endfor %}
