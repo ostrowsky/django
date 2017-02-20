@@ -1,0 +1,38 @@
+{% extends "base_admin.html" %}
+{% block js %}
+
+        <script type="text/javascript" src="/static/packages/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/static/js/item.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+<div><h4>Выберите категорию для просмотра и редактирования товаров</h4>
+<form id="items_by_cat" action="">
+   <select id="id_category" name="category" required>
+        {% for category in categories %}
+        <option value={{category.id}}>{{category.name}}</option>
+        {% endfor %}
+    </select>
+<button type="button" class="btn btn-default" aria-label="Edit"
+                onclick="select_items_by_category()">
+            <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+</button>
+
+</form>
+</div>
+
+    <div class="row">
+        <div class="col-md-6">
+            Товары
+            <ul id="items_list">
+                {% include "inc-items_list.html" %}
+            </ul>
+        </div>
+    </div>
+  <form id="item_form" method="post" action="" enctype="multipart/form-data">
+        {% include 'inc-registration_form.html' %}
+    </form>
+    <input type="submit" value="Отправить" onclick="send_new_item()">
+{% endblock %}

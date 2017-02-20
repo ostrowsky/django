@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{{ category.name }}{% endblock %}
+{% block categories %}
+            <div class="list-group">
+                <a href="{% url 'main' %}" class="list-group-item">Главная</a>
+                {% for cat in categories %}
+                    {% if cat.name == category.name %}
+                        <a href="{{cat.link}}" class="list-group-item active">{{cat.name}}</a>
+                    {% else %}
+                        <a href="{{cat.link}}" class="list-group-item">{{cat.name}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+{% endblock %}
+{% block content %}
+
+        <p class="p3"><h4>{{ category.name }}</h4></p>
+        <p align="justify">{{ category.description }}</p>
+
+        <div class="row">
+        {% for item in items %}
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <img src="{{item.preview.url}}">
+                    <a href="/goods/{{item.id}}"><br>{{item.name}}</a>
+                    <br>({{item.article}})
+                    <br><b>{{item.price}} руб.</b>
+                </div>
+        {% endfor %}
+        </div>
+
+
+
+
+{% endblock %}
+</body>
+</html>
