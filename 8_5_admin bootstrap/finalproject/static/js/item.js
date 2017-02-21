@@ -15,9 +15,11 @@ function clear_errors() {
 }
 
 function clear_form() {
+    $('#id_description').val('');
     console.log('clear form');
     clear_errors();
-    $('input', $form).val('')
+    $('input', $form).val('');
+
 }
 
 function show_errors(errors) {

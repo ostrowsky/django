@@ -8,17 +8,55 @@
         {% endblock %}
     </title>
         {% block  css %}
-        <link rel="stylesheet" href="/static/packages/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/packages/bootstrap/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="/static/styles/styles_boots.css">
+        <link rel="stylesheet" type="text/css" href="/static/styles/layout.css">
         {% endblock %}
 </head>
 <body>
     {% block js %}
     {% endblock %}
 
+    {% block main %}
+    <header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="index.html">Панель администрирования</a></h1>
+			<h2 class="section_title">{% block section_title %}{% endblock %}</h2><div class="btn_view_site"><a href="/">На сайт</a></div>
+		</hgroup>
+</header>
+<section id="secondary_bar">
+		<div class="user">
+			<p>Admin (<a href="#">3 Messages</a>)</p>
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+		</div>
+
+</section><!-- end of secondary bar -->
+
+	<aside id="sidebar" class="column">
+		<form class="quick_search">
+			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+		</form>
+		<hr/>
+		<h3>Пользователи</h3>
+		<ul class="toggle">
+			<li class="icn_new_article"><a href="/admin/">Просмотр и редактирование пользователей</a></li>
+        </ul>
+		<h3>Товарные категории</h3>
+		<ul class="toggle">
+			<li class="icn_add_user"><a href="/admin/cat/">Просмотр и редактирование товарных категорий</a></li>
+        </ul>
+		<h3>Товары</h3>
+		<ul class="toggle">
+			<li class="icn_folder"><a href="/admin/item/">Просмотр и редактирование товаров</a></li>
+        </ul>
+	</aside><!-- end of sidebar -->
+    {% endblock %}
     {% block content %}
     {% endblock %}
-    <br>
-  <a href="/admin/">Пользователи</a> / <a href="/admin/cat/">Категории</a> / <a href="/admin/item/">Товары</a>
-</body>
+    <footer>
+        <hr>
+        <p><strong>Copyright &copy; 2017 Островский В.А.</strong></p>
+        <p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+    </footer>
+ </body>
 </html>
