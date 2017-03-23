@@ -1,0 +1,26 @@
+{% extends "base_admin.html" %}
+{% block js %}
+        <script type="text/javascript" src="/static/packages/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/static/js/create_user.js"></script>
+    {% endblock %}
+{% block section_title %}Пользователи{% endblock %}
+{% block content %}
+{% csrf_token %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            Пользователи
+            <ul id="users_list">
+                {% include "inc-users_list.html" %}
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <form id="user_form">
+                {% include 'inc-registration_form.html' %}
+            </form>
+            <input type="submit" value="Отправить" onclick="send_data()">
+         </div>
+    </div>
+{% endblock %}
+
+

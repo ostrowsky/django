@@ -1,0 +1,261 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static '/packages/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.eot' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.svg' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.ttf' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.woff' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.woff2' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/styles_boots.css' %}">
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+   $("#check").click(function(){
+      console.log('-------------------------')
+      $(".form-group").animate({right:0},1000);
+
+   });
+
+});
+</script>
+    {% endblock %}
+</head>
+<body>
+<div class="container-fluid">
+    {% block topmenu %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <a href="/"><img src="{% static '/pics/logo.png' %}" class="logo"></a>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+            <div class="miniblock">
+                <a href="delivery.html"><h4>Доставка</h4></a>
+                <p class="p1">Бесплатно по Москве и Санкт-Петербургу. Курьером по всей России - от 130 р</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+            <div class="miniblock">
+                <a href="pay.html"><h4>Оплата</h4></a>
+                <p class="p1">Наличные, безналичный расчет</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+            <div class="miniblock">
+                <a href="garanty.html"><h4>Гарантия</h4></a>
+                <p class="p1">Обмен и возврат всех аксессуаров в течение 7 дней</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+            <div class="miniblock">
+                <a href="basket.html"><h4>Корзина</h4></a>
+                <span><button type="button" class="btn btn-warning btn-lg">
+ 							 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 
+						</button></span>
+            </div>
+
+            <div class="auth">
+                <input type="button" id="check" value="Есть аккаунт?">
+                <a href="/user/registration/">Зарегистрироваться</a>
+
+                {% if not user.is_authenticated %}
+                {% if errors %}
+                <p class="error">Сожалеем, вы неправильно ввели логин или пароль</p>
+                {% endif %}
+                    <form method="post" class="form-group" action="/user/login/">
+                    {% csrf_token %}
+                        <input type="text" name="login" value="{{ username }}" placeholder="Логин"><br>
+                        <input type="password" name="password" value="" placeholder="Пароль"><br>
+                        <button type="submit" class="btn btn-warning">Вход</button>
+                    </form>
+                {% else %}
+                {{ user.username }}
+                <a href="/user/logout/">Выход</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    {% block sidemenu %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
+            <h4 class="p3"><br>ПОЗВОНИТЕ НАМ</h4>
+            <p class="p1">чтобы задать вопрос или сделать заказ<br>
+                Для звонков из Москвы:<br>
+            <h3>+7(499)702-01-03</h3>
+            ПН-ПТ 09:00-18:00<br>
+            СБ 12:00-15:00
+            </p>
+            <a href="contacts.html"><i class="ref">все контакты</i></a><br><br>
+
+            <form action="sgp-spigen.ru" method="get">
+                <div class="col-xs-8"><input type="text" class="form-control" name="phone" size="17"
+                                             placeholder="+7(___)___-__-__"></div>
+                <button type="submit" class="btn btn-warning">Отправить</button>
+                <p class="p1"><br>Оставьте свой номер и мы вам перезвоним</p>
+                <div class="col-xs-8"><input type="text" class="form-control" name="phone" size="20"
+                                             placeholder="Поиск товара"></div>
+                <button type="submit" class="btn btn-warning">Искать</button>
+
+            </form>
+            <br>
+            {% block categories %}
+            <div class="list-group">
+                <a href="{% url 'main' %}" class="list-group-item active">Главная</a>
+                {% for category in categories %}
+                <a href="{{category.link}}" class="list-group-item">{{category.name}}</a>
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </div>
+
+        {% endblock %}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+            {% block content %}
+            <img src="{% static '/pics/for_index.jpg' %}" id="pic5">
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <h4 class="p2">Персональные рекомендации для Вас</h4>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev1.jpg' %}"><br>Чехол
+            для iPhone SE/5S/5 SGP<br>Neo Hybrid, цвет Metal Slate<br>(SGP-041CS20253)</a><br><b>2 286 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev2.jpg' %}"><br>Чехол
+            для iPhone 6 SGP Slim<br> Armor S, цвет Metal Slate<br>(SGP10955)</a><br><b>1 676 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev3.jpg' %}"><br>Чехол
+            для iPhone 6s Thin Fit<br> цвет Crystal Clear<br>(SGP11591)</a><br><b>1 276 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev4.jpg' %}"><br>Бампер
+            для iPhone 6 Neo Hybrid<br> EX Metal цвет Satin Silver<br>(SGP11186)</a><br><b>1 957 руб.</b></div>
+    </div>
+    <br>
+    <div class="row">
+        <h4 class="p2">Другие посетители сейчас смотрят</h4>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev5.jpg' %}"><br>Чехол
+            для iPhone 6 Plus SGP<br>Air Skin, цвет Mint<br>(SGP11159)</a><br><b>1 319 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev6.jpg' %}"><br>Чехол
+            для iPhone 6 Plus SGP<br>Air Skin, цвет Champagne<br>(SGP11161)</a><br><b>1 319 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev7.jpg' %}"><br>Чехол
+            для iPhone 6 Plus SGP<br>Air Skin, цвет Azalea Pink<br>(SGP11160)</a><br><b>1 319 руб.</b></div>
+        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2"><a href="goods/10689/"><img
+                src="{% static '/pics/preview/prev8.jpg' %}"><br>Чехол
+            для iPhone 6 SGP Tough<br>Armor S, цвет Metal Slate<br>(SGP11043)</a><br><b>1 686 руб.</b></div>
+    </div>
+    <div class="row">
+        <h4 class="p2">О нас</h4>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8">
+            <div class="desc"><p>Добро пожаловать в интернет–магазин Sgp–spigen.ru! Шпиген это множество оригинальных
+                аксессуаров марки SGP Spigen для iPhone, iPad а также для Samsung Galaxy, HTC и других мобильных
+                устройств премиального сегмента.<br><br>
+
+                Основу ассортимента магазина составляют практичные чехлы для iPhone 6s, чехлы для iPhone 6, чехлы для
+                iPhone 5S / 5, чехлы для iPhone 5c, чехлы для iPad mini, чехлы для iPad mini Retina, и чехлы для iPad,
+                кроме того вы найдете у нас элегантные кожаные чехлы для iPhone и Samsung Galaxy. Если чехлам вы
+                предпочитаете бамперы для iPhone, то ассортимент SGP Spigen и в этом случае не оставит вас равнодушным.
+                Чтобы ваше устройство служило вам как можно дольше и радовало своим идеальным состоянием, рекомендуем
+                приобрести защитные пленки Spigen, славящиеся своей надежностью. А персонализировать ваш смартфон
+                помогут графические принты для iPhone и другие аксессуары для мобильных устройств.<br><br>
+
+                В нашем магазине доставка любого товара по Москве и Санкт–Петербургу осуществляется бесплатно!<br><br>
+
+                Стоимость доставки в регионы в пункты самовывоза – от 130 р., до двери – от 228 р. Сроки доставки: от 1
+                дня в зависимости от региона.
+                Мы принимаем платежи как наличными, так и банковскими картами. В течение 7 дней вы можете вернуть любой
+                товар, купленный в магазине SGP Spigen.ru, при условии сохранения товарного вида.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section"><img src="{% static '/pics/visa.png' %}" alt="visa" class="payicon"/></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section"><img src="{% static '/pics/mastercard.png' %}" alt="mastercard" class="payicon"/></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section"><img src="{% static '/pics/maestro.png' %}" alt="maestro" class="payicon"/></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section"><a href="/http://vk.com/club73766335" target="_blank"><img
+                    src="{% static 'pics/vk.gif' %}" width="36"
+                    height="36" border="0"
+                    alt="Vkontakte"/></a></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section"><a
+                    href="http://market.yandex.ru/shop/232571/reviews?cpc=oV1kyTJnUnAr2843GtkIxhDd_bam5ukpH8AXFtfa1_0PxZq5OTDf8A&cmid=wGGmRI_qKdrPq15ADEegZg"
+                    target="_blank"><img src="{% static '/pics/yamarket.gif' %}" width="40" height="40" border="0"
+                                         alt="Яндекс.Маркет"/></a>
+            </div>
+        </div>
+        <!-- Yandex.Metrika informer -->
+
+        <!-- Yandex.Metrika informer -->
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <a href="https://metrika.yandex.ru/stat/?id=24801377&amp;from=informer"
+               target="_blank" rel="nofollow"><img
+                    src="https://informer.yandex.ru/informer/24801377/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                    style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика"
+                    title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+                    class="ym-advanced-informer" data-cid="24801377" data-lang="ru"/></a>
+            <!-- /Yandex.Metrika informer -->
+
+            <!-- Yandex.Metrika counter -->
+            <div class="section">
+                <script type="text/javascript">
+							(function (d, w, c) {
+							(w[c] = w[c] || []).push(function() {
+								try {
+										w.yaCounter24801377 = new Ya.Metrika({
+										id:24801377,
+										clickmap:true,
+										trackLinks:true,
+										accurateTrackBounce:true,
+										webvisor:true
+									});
+									} catch(e) { }
+									});
+
+								var n = d.getElementsByTagName("script")[0],
+										s = d.createElement("script"),
+										f = function () { n.parentNode.insertBefore(s, n); };
+										s.type = "text/javascript";
+										s.async = true;
+	<!-- /Yandex.Metrika counter -->
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="section1">© 2016 Островский В.А</div>
+        </div>
+    </div>
+</div>
+</body>
+</html> 
