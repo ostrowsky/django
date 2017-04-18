@@ -6,12 +6,14 @@ from django.core.exceptions import ValidationError
 from spigen.forms import MyRegistrationForm
 from spigen.models import Category, Item
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 # Create your views here.
+'''
 def main(request):
     categories = Category.objects.all()
     return render(request, 'index.html', {'categories':categories})
-
+'''
 def login(request):
     if request.method == 'POST':
         print("POST datd =", request.POST)
@@ -73,14 +75,49 @@ def catalog(request, cat_link):
     context = {"items":items, "category":cat, "categories":categories}
     return render(request, 'category.html',context )
 
-class ItemView(DetailView):
-    model = Item
-    context_object_name = 'item'
-    template_name = 'item.html'
+class Categories(ListView):
+    model = Category
+    template_name = 'base.html'
+
+class CatDetail(DetailView):
+    model = Category
+    template_name = 'category.html'
+
     def get_context_data(self, **kwargs):
-        context = super(ItemView, self).get_context_data(pk=item_id)
+        context = super(CatDetail, self).get_context_data(**kwargs)
+        context['items'] = Item.objects.filter(category=self.object.id)
+        context['categories'] = Category.objects.all()
+        return context
+
+class ItemDetail(DetailView):
+    model = Item
+    template_name = 'item.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetail, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
         return context
 '''
+
+class ItemView(ListView):
+    template_name = 'histories.html'
+    model = HandHistory
+    paginate_by = 10
+    def get(self, request, *args, **kwargs):
+        leak_pk = kwargs.get('leak_pk')
+        leak = get_object_or_404(Leak, pk=leak_pk)
+        self.leak = leak
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['leak'] = self.leak
+        return context
+
+    def get_queryset(self):
+        return HandHistory.objects.filter(leak=self.leak)
+
+
 def item(request, item_id):
     categories = Category.objects.all()
     item=get_object_or_404(Item, pk=item_id)

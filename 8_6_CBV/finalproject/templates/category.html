@@ -6,17 +6,17 @@
                 <a href="{% url 'main' %}" class="list-group-item">Главная</a>
                 {% for cat in categories %}
                     {% if cat.name == category.name %}
-                        <a href="{{cat.link}}" class="list-group-item active">{{cat.name}}</a>
+                        <a href="{{cat.id}}" class="list-group-item active">{{cat.name}}</a>
                     {% else %}
-                        <a href="{{cat.link}}" class="list-group-item">{{cat.name}}</a>
+                        <a href="{{cat.id}}" class="list-group-item">{{cat.name}}</a>
                     {% endif %}
                 {% endfor %}
             </div>
 {% endblock %}
 {% block content %}
     {% load four_in_row %}
-        <p class="p3"><h4>{{ category.name }}</h4></p>
-        <p align="justify">{{ category.description }}</p>
+        <p class="p3"><h4>{{ object.name }}</h4></p>
+        <p align="justify">{{ object.description }}</p>
 
         <div class="block">
              <div class="row">

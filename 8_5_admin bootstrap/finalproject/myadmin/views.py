@@ -10,6 +10,7 @@ from spigen.forms import Category_form, Item_form
 
 
 # Create your views here.
+@user_passes_test(lambda u: u.is_superuser)
 def admin_page(request):
     users = User.objects.all()
     user_form = MyRegistrationForm()

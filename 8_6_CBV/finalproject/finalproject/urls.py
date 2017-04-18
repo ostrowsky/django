@@ -17,14 +17,14 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from spigen.views import main, login, logout, registration_low, registration_form, catalog, ItemView
+from spigen.views import login, logout, registration_low, registration_form, catalog, Categories, CatDetail,ItemDetail
 from myadmin.views import admin_page, delete_user,get_user_form, create_user, admin_cat, admin_cat_create, admin_cat_delete, get_cat_info, admin_item, admin_item_create, admin_item_delete, get_item_info, get_item_by_cat
 
 
 urlpatterns = [
     url(r'^admin/$', admin_page),
     url(r'^admin_django/', admin.site.urls),
-    url(r'^$', main, name='main'),
+    url(r'^$', Categories.as_view(), name='main'),
     url(r'^user/login/$', login),
     url(r'^user/logout/$', logout),
     url(r'^user/registration/$', registration_form),
@@ -49,9 +49,10 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'^cat/(\S+)/', catalog, name='catalog'),
-    url(r'^goods/(\d+)$',ItemView.as_view(), name='item'),
+    url(r'^cat/(?P<pk>\d+)$', CatDetail.as_view(), name='catalog'),
+    url(r'^goods/(?P<pk>\d+)$',ItemDetail.as_view(), name='item'),
     url(r'^admin/get_item_by_cat/(\d+)$', get_item_by_cat, name='get_item_by_cat'),
+
 ]
 
 if settings.DEBUG:

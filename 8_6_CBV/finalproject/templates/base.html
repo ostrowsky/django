@@ -17,17 +17,14 @@
     <link rel="stylesheet" type="text/css"
           href="{% static '/packages/bootstrap/fonts/glyphicons-halflings-regular.woff2' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/styles/styles_boots.css' %}">
-
+<script src="{% static '/js/jquery-2.1.4.min.js' %}"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+     $(document).ready(function() {
+        $("#check").click(function(event) {
+            $(".form-group").fadeIn();
+        });
+     });
 
-   $("#check").click(function(){
-      console.log('-------------------------')
-      $(".form-group").animate({right:0},1000);
-
-   });
-
-});
 </script>
     {% endblock %}
 </head>
@@ -113,8 +110,8 @@ $(document).ready(function(){
             {% block categories %}
             <div class="list-group">
                 <a href="{% url 'main' %}" class="list-group-item active">Главная</a>
-                {% for category in categories %}
-                <a href="{{category.link}}" class="list-group-item">{{category.name}}</a>
+                {% for category in object_list %}
+                <a href="/cat/{{category.id}}" class="list-group-item">{{category.name}}</a>
                 {% endfor %}
             </div>
             {% endblock %}

@@ -3,11 +3,11 @@
 {#{% block categories %}
 <div class="list-group">
     <a href="{% url 'main' %}" class="list-group-item">Главная</a>
-    {% for cat in object.categories %}
-    {% if cat.name == object.item.category.name %}
-    <a href="{{cat.link}}" class="list-group-item active">{{object.cat.name}}</a>
+    {% for cat in categories %}
+    {% if cat.id == object.category_id %}
+    <a href="{% url 'catalog' cat.id %}" class="list-group-item active">{{cat.name}}</a>
     {% else %}
-    <a href="{{cat.link}}" class="list-group-item">{{object.cat.name}}</a>
+    <a href="{% url 'catalog' cat.id %}"  class="list-group-item">{{cat.name}}</a>
     {% endif %}
     {% endfor %}
 </div>
